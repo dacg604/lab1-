@@ -1,0 +1,32 @@
+# Function to calculate BMI
+def calc_bmi(height, weight):
+    # Compute body mass index
+    bmi = weight / ((height / 100.0) ** 2)
+    return bmi
+
+# Main function
+def main():
+    # Ask user for height in cms
+    height = float(input("Enter your height in cms: "))
+
+    # Ask user for weight in kgs
+    weight = float(input("Enter your weight in kgs: "))
+
+    # Call calc_bmi function
+    bmi = calc_bmi(height, weight)
+
+    # Print result
+    print(f"Your body mass index is {bmi:.2f} kg/m^2")
+
+    if 18 < bmi <= 25:
+        print("Peso normal")
+    elif 25 < bmi <= 30:
+        print("Sobrepeso")
+    elif 30 < bmi <= 39.9:
+        print("Obesidad")
+    elif bmi >= 40:
+        print("Obesidad morbida")
+
+# Entry point of the program
+if __name__ == "__main__":
+    main()
