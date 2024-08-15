@@ -1,0 +1,34 @@
+# Estructura para almacenar la información del usuario
+class User:
+    def __init__(self, height, weight):
+        self.height = height  # Altura en cm
+        self.weight = weight  # Peso en kg
+
+# Función para clasificar el peso y calcular el porcentaje en cada categoría
+def classify_weight(users):
+    underweight = 0
+    normal_weight = 0
+    overweight = 0
+    obese = 0
+
+    for user in users:
+        height_in_meters = user.height / 100.0
+        bmi = user.weight / (height_in_meters * height_in_meters)
+
+        if bmi < 18.5:
+            underweight += 1
+        elif 18.5 <= bmi < 24.9:
+            normal_weight += 1
+        elif 25 <= bmi < 29.9:
+            overweight += 1
+        else:
+            obese += 1
+
+    # Imprimir la distribución de peso
+    print_weight_distribution(underweight, normal_weight, overweight, obese, len(users))
+
+# Función para imprimir la distribución de peso en porcentaje
+def print_weight_distribution(underweight, normal_weight, overweight, obese, total):
+    if total == 0:
+        print("No hay usuarios para analizar.")
+       
