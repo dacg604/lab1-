@@ -1,6 +1,6 @@
 # Clase para almacenar la información del usuario
 class Usuario:
-    def _init_(self, altura, peso):
+    def __init__(self, altura, peso):
         self.altura = altura  # Altura en cm
         self.peso = peso      # Peso en kg
 
@@ -65,5 +65,6 @@ def main():
     clasificar_peso(usuarios)
 
 # Ejecutar la función principal
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
+
