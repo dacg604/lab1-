@@ -1,0 +1,90 @@
+#include <stdio.h>
+
+// Estructura para almacenar la información del usuario
+typedef struct {
+    float altura; // Altura en cm
+    float peso;   // Peso en kg
+} Usuario;
+
+// Prototipos de las funciones
+void clasificarPeso(Usuario usuarios[], int count);
+void imprimirDistribucionPeso(int bajoPeso, int pesoNormal, int sobrepeso, int obeso, int total);
+float calcularPesoIdeal(float altura);
+
+// Función principal
+int main() {
+    int numUsuarios;
+
+    // Preguntar cuántos usuarios se van a ingresar
+    printf("Ingrese el número de usuarios: ");
+    scanf("%d", &numUsuarios);
+
+    // Crear un arreglo de usuarios
+    Usuario usuarios[numUsuarios];
+
+    // Leer la información de cada usuario
+    for (int i = 0; i < numUsuarios; i++) {
+        printf("Ingrese la altura (en cm) para el usuario %d: ", i + 1);
+        scanf("%f", &usuarios[i].altura);
+        printf("Ingrese el peso (en kg) para el usuario %d: ", i + 1);
+        scanf("%f", &usuarios[i].peso);
+    }
+
+    // Clasificar el peso de cada usuario y calcular las estadísticas
+    clasificarPeso(usuarios, numUsuarios);
+
+    return 0;
+}
+
+// Función para clasificar el peso y calcular el porcentaje en cada categoría
+void clasificarPeso(Usuario usuarios[], int count) {
+    int bajoPeso = 0, pesoNormal = 0, sobrepeso = 0, obeso = 0;
+
+    for (int i = 0; i < count; i++) {
+        float alturaEnMetros = usuarios[i].altura / 100.0;
+        float bmi = usuarios[i].peso / (alturaEnMetros * alturaEnMetros);
+
+        if (bmi < 18.5) {
+            bajoPeso++;
+            float pesoIdeal = calcularPesoIdeal(usuarios[i].altura);
+            printf("Usuario %d: Su peso ideal para estar en el rango de peso normal es: %.2f kg\n", i + 1, pesoIdeal);
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+            pesoNormal++;
+        } else if (bmi >= 25 && bmi < 29.9) {
+            sobrepeso++;
+            float pesoIdeal = calcularPesoIdeal(usuarios[i].altura);
+            printf("Usuario %d: Su peso ideal para estar en el rango de peso normal es: %.2f kg\n", i + 1, pesoIdeal);
+        } else {
+            obeso++;
+            float pesoIdeal = calcularPesoIdeal(usuarios[i].altura);
+            printf("Usuario %d: Su peso ideal para estar en el rango de peso normal es: %.2f kg\n", i + 1, pesoIdeal);
+        }
+    }
+
+    // Imprimir la distribución de pesos
+    imprimirDistribucionPeso(bajoPeso, pesoNormal, sobrepeso, obeso, count);
+}
+
+// Función para calcular el peso ideal
+float calcularPesoIdeal(float altura) {
+    // Convertir altura a metros
+    float alturaEnMetros = altura / 100.0;
+
+    // Calcular el peso ideal utilizando el rango de IMC normal (18.5 - 24.9)
+    float pesoIdeal = 22.0 * (alturaEnMetros * alturaEnMetros); // Usamos 22 como valor promedio del rango normal
+
+    return pesoIdeal;
+}
+
+// Función para imprimir la distribución de pesos en porcentaje
+void imprimirDistribucionPeso(int bajoPeso, int pesoNormal, int sobrepeso, int obeso, int total) {
+    if (total == 0) {
+        printf("No hay usuarios para analizar.\n");
+        return;
+    }
+
+    printf("Porcentaje de usuarios con bajo peso: %.2f%%\n", (bajoPeso / (float)total) * 100);
+    printf("Porcentaje de usuarios con peso normal: %.2f%%\n", (pesoNormal / (float)total) * 100);
+    printf("Porcentaje de usuarios con sobrepeso: %.2f%%\n", (sobrepeso / (float)total) * 100);
+    printf("Porcentaje de usuarios con obesidad: %.2f%%\n", (obeso / (float)total) * 100);
+}
