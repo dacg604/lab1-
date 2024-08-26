@@ -1,10 +1,10 @@
-# Estructura para almacenar la información del usuario
+
 class User:
     def __init__(self, height, weight):
         self.height = height  # Altura en cm
         self.weight = weight  # Peso en kg
 
-# Función para clasificar el peso y calcular el porcentaje en cada categoría
+
 def classify_weight(users):
     underweight = 0
     normal_weight = 0
@@ -24,11 +24,32 @@ def classify_weight(users):
         else:
             obese += 1
 
-    # Imprimir la distribución de peso
+    
     print_weight_distribution(underweight, normal_weight, overweight, obese, len(users))
 
-# Función para imprimir la distribución de peso en porcentaje
-def print_weight_distribution(underweight, normal_weight, overweight, obese, total):
-    if total == 0:
+
+def print_weight_distribution(a,b,c,d,e,):
+    if e == 0:
         print("No hay usuarios para analizar.")
+        return
+
+    print(f"Porcentaje de usuarios con bajo peso: {(a / e) * 100:.2f}%")
+    print(f"Porcentaje de usuarios con peso normal: {(b / e) * 100:.2f}%")
+    print(f"Porcentaje de usuarios con sobrepeso: {(c / e) * 100:.2f}%")
+    print(f"Porcentaje de usuarios con obesidad: {(d / e) * 100:.2f}%")
+
+def main():
+    num_users = int(input("Ingrese el número de usuarios: "))
+
+    
+    users = []
+
+    
+    for i in range(num_users):
+        height = float(input(f"Ingrese la altura (en cm) para el usuario {i + 1}: "))
+        weight = float(input(f"Ingrese el peso (en kg) para el usuario {i + 1}: "))
+        users.append(User(height, weight))
+
+    
+    classify_weight(users)
        
