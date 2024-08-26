@@ -1,28 +1,26 @@
 #include <stdio.h>
 
-// Estructura para almacenar la información del usuario
+
 typedef struct {
     float altura; // Altura en cm
     float peso;   // Peso en kg
 } Usuario;
 
-// Prototipos de las funciones
+
 void clasificarPeso(Usuario usuarios[], int count);
 void imprimirDistribucionPeso(int bajoPeso, int pesoNormal, int sobrepeso, int obeso, int total);
 float calcularPesoIdeal(float altura);
 
-// Función principal
 int main() {
     int numUsuarios;
 
-    // Preguntar cuántos usuarios se van a ingresar
+  // Preguntar cuántos usuarios se van a ingresar
     printf("Ingrese el número de usuarios: ");
     scanf("%d", &numUsuarios);
 
-    // Crear un arreglo de usuarios
+    
     Usuario usuarios[numUsuarios];
 
-    // Leer la información de cada usuario
     for (int i = 0; i < numUsuarios; i++) {
         printf("Ingrese la altura (en cm) para el usuario %d: ", i + 1);
         scanf("%f", &usuarios[i].altura);
@@ -36,7 +34,7 @@ int main() {
     return 0;
 }
 
-// Función para clasificar el peso y calcular el porcentaje en cada categoría
+
 void clasificarPeso(Usuario usuarios[], int count) {
     int bajoPeso = 0, pesoNormal = 0, sobrepeso = 0, obeso = 0;
 
@@ -61,11 +59,11 @@ void clasificarPeso(Usuario usuarios[], int count) {
         }
     }
 
-    // Imprimir la distribución de pesos
+   
     imprimirDistribucionPeso(bajoPeso, pesoNormal, sobrepeso, obeso, count);
 }
 
-// Función para calcular el peso ideal
+
 float calcularPesoIdeal(float altura) {
     // Convertir altura a metros
     float alturaEnMetros = altura / 100.0;
@@ -75,7 +73,6 @@ float calcularPesoIdeal(float altura) {
 
     return pesoIdeal;
 }
-
 // Función para imprimir la distribución de pesos en porcentaje
 void imprimirDistribucionPeso(int bajoPeso, int pesoNormal, int sobrepeso, int obeso, int total) {
     if (total == 0) {
