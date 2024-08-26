@@ -1,10 +1,9 @@
-# Clase para almacenar la información del usuario
 class Usuario:
     def __init__(self, altura, peso):
-        self.altura = altura  # Altura en cm
-        self.peso = peso      # Peso en kg
+        self.altura = altura 
+        self.peso = peso     
 
-# Función para clasificar el peso y calcular el porcentaje en cada categoría
+
 def clasificar_peso(usuarios):
     bajo_peso = 0
     peso_normal = 0
@@ -30,41 +29,39 @@ def clasificar_peso(usuarios):
             peso_ideal = calcular_peso_ideal(usuario.altura)
             print(f"Usuario {i + 1}: Su peso ideal para estar en el rango de peso normal es: {peso_ideal:.2f} kg")
 
-    # Imprimir la distribución de pesos
-    imprimir_distribucion_peso(bajo_peso, peso_normal, sobrepeso, obeso, len(usuarios))
+    
+    imprimir_distribucion_peso(bajo_peso, peso_normal, sobrepeso, obeso,len(usuarios) )
 
-# Función para calcular el peso ideal
 def calcular_peso_ideal(altura):
-    altura_en_metros = altura / 100.0
-    peso_ideal = 22.0 * (altura_en_metros ** 2)  # Usamos 22 como valor promedio del rango normal
+    altura_en_metros = altura / 100.
+    peso_ideal = 22.0 * (altura ** 2)  
     return peso_ideal
 
-# Función para imprimir la distribución de pesos en porcentaje
-def imprimir_distribucion_peso(bajo_peso, peso_normal, sobrepeso, obeso, total):
+
+def imprimir_distribucion_peso(a , b, c, d, total):
     if total == 0:
         print("No hay usuarios para analizar.")
         return
 
-    print(f"Porcentaje de usuarios con bajo peso: {bajo_peso / total * 100:.2f}%")
-    print(f"Porcentaje de usuarios con peso normal: {peso_normal / total * 100:.2f}%")
-    print(f"Porcentaje de usuarios con sobrepeso: {sobrepeso / total * 100:.2f}%")
-    print(f"Porcentaje de usuarios con obesidad: {obeso / total * 100:.2f}%")
+    print(f"Porcentaje de usuarios con bajo peso: {a / total * 100:.2f}%")
+    print(f"Porcentaje de usuarios con peso normal: {b / total * 100:.2f}%")
+    print(f"Porcentaje de usuarios con sobrepeso: {c / total * 100:.2f}%")
+    print(f"Porcentaje de usuarios con obesidad: {d / total * 100:.2f}%")
 
-# Función principal
 def main():
     num_usuarios = int(input("Ingrese el número de usuarios: "))
 
-    # Crear una lista de usuarios
+    
     usuarios = []
     for i in range(num_usuarios):
         altura = float(input(f"Ingrese la altura (en cm) para el usuario {i + 1}: "))
         peso = float(input(f"Ingrese el peso (en kg) para el usuario {i + 1}: "))
         usuarios.append(Usuario(altura, peso))
+        total = len(usuarios)
 
-    # Clasificar el peso de cada usuario y calcular las estadísticas
+    
     clasificar_peso(usuarios)
 
-# Ejecutar la función principal
+
 if __name__ == "__main__":
     main()
-
